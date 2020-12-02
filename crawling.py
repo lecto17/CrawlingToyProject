@@ -10,24 +10,37 @@ driver.get(url)
 #페이지 로딩 시간을 기다린다.
 time.sleep(1)
 
+content = ""
 #.text를 통해 text를 읽어온다.
 #날짜
-day = driver.find_element_by_id("qtDayTextG").text
+days = driver.find_element_by_id("qtDayTextG").text
+day = ""
+for d in days.split("\n"):
+    day += d+". "
 #제목&본문
 prefix = driver.find_element_by_id("qtDayText2").text
 #길잡이
 ending = driver.find_elements_by_class_name("box2Content")[1].text
 
+f = open('C:/Users/hyunoos/Desktop/QT.txt', 'ab')
+
 # tmp = driver.find_element(with_tag_name("p").below(divTitle))
 print("*****날짜******")
 print(day, end="\n\n")
+content = day+"\n"
 print("*****TITLE&본문******")
 print("제목: "+prefix.split('\n')[0])
+content += prefix.split('\n')[0]+"\n"
 print("본문: "+prefix.split('\n')[1], end="\n\n")
+content += prefix.split('\n')[1]+"\n\n\n\n"
 
 print("*****ENDING******")
 print(ending)
+content += ending+"\n\n"
 
+print("content: "+content)
+f.write(content.encode("utf-8"))
+f.close()
 # time.sleep(2)
 
 # elem = driver.find_element_by_name("query")
