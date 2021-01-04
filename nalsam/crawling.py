@@ -77,4 +77,4 @@ f.close()
 #link 걸어놓은 주소 중 해당하는 element를 반환
 #driver.find_element_by_xpath('//a[@href="'++'"]')
 
-# driver.close()
+driver.close()
